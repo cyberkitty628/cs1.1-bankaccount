@@ -13,8 +13,13 @@ class BankAccount:
         print(f'Amount Deposited: ${float(amount)}')
 
     def withdraw(self, amount):
+        over_draft_fee = 10
         self.balance -= amount
-        print(f'Amount Withdrawn: ${float(amount)}')
+        if self.balance < 0:
+            self.balance -= over_draft_fee
+            print("Insufficient funds.")
+        else:
+            print(f'Amount Withdrawn: ${float(amount)}')
 
     def get_balance(self):
         print(f'Your account balance is {self.balance}.')
@@ -24,8 +29,12 @@ account_1 = BankAccount('Kristina Kamphuis')
 
 account_1.deposit(800)
 
-account_1.withdraw(600)
+account_1.withdraw(850)
 
-# print(account_1.balance)
+print(account_1.balance)
+
+account_1.deposit(900)
+
+account_1.withdraw(60)
 
 account_1.get_balance()
